@@ -4,9 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-/**
- * Created by volod on 09-Apr-17.
- */
 public class RegressionTest {
 
     @BeforeClass
