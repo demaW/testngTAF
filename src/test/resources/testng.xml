@@ -1,0 +1,7 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="allSuites">
+    <suite-files>
+        <suite-file path="testngSmoke.xml"/>
+        <suite-file path="testngRegression.xml"/>
+    </suite-files>
+</suite>
