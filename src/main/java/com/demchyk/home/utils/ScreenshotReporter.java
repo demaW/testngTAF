@@ -2,17 +2,20 @@ package com.demchyk.home.utils;
 
 import com.demchyk.home.core.DriverProvider;
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.testng.*;
-import org.testng.xml.XmlSuite;
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+import java.time.Instant;
 
-public class ScreenshotReporter implements ITestListener, IReporter {
+public class ScreenshotReporter implements ITestListener {
+    private Logger logger = Logger.getLogger(ScreenshotReporter.class);
     private static final String SCREEN_PATH = "resources/screens/";
 
     private WebDriver driver;
@@ -29,7 +32,7 @@ public class ScreenshotReporter implements ITestListener, IReporter {
 
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-        System.err.println("*** Error in method: " + iTestResult.getName() + " failed ***");
+        logger.error("*** Error in method: " + iTestResult.getName() + " failed ***");
         String methodName = iTestResult.getName().trim();
         takeScreenshot(methodName + methodName.hashCode());
     }
@@ -57,16 +60,14 @@ public class ScreenshotReporter implements ITestListener, IReporter {
     private void takeScreenshot(String mehodName) {
         driver = DriverProvider.getDriver();
         File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        String fileLocation = SCREEN_PATH + mehodName + Instant.now().toEpochMilli() + ".PNG";
         try {
-            FileUtils.copyFile(file, new File(SCREEN_PATH + mehodName + ".PNG"));
+            File newFile = new File(fileLocation);
+            FileUtils.copyFile(file, new File(String.valueOf(newFile)));
+            logger.error("Screenshot location: " + newFile.getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites, String outputDirectory) {
-
     }
 }
 

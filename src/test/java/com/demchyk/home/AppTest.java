@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 /**
  * Unit test for simple App.
  */
-public class AppTest {
+public class AppTest extends BaseClass {
     private DemoQAMainBO demoQAMainBO;
 
     @BeforeClass
@@ -20,11 +20,10 @@ public class AppTest {
 
     @Test
     public void method1Test(){
-        /*demoQAMainBO = new DemoQAMainBO();
+        demoQAMainBO = new DemoQAMainBO();
         demoQAMainBO.open();
         Assert.assertTrue("Home".contentEquals(demoQAMainBO.getHeaderText()));
-        System.out.println("Method 1");*/
-        Assert.assertTrue(false);
+        System.out.println("Method 1");
     }
 
     @Test void method2Test(){
