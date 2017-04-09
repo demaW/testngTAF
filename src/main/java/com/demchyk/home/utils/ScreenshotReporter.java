@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import org.testng.Reporter;
 
 import java.io.File;
 import java.io.IOException;
@@ -61,13 +62,14 @@ public class ScreenshotReporter implements ITestListener {
         driver = DriverProvider.getDriver();
         File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         String fileLocation = SCREEN_PATH + mehodName + Instant.now().toEpochMilli() + ".PNG";
+        File newFile = new File(fileLocation);
         try {
-            File newFile = new File(fileLocation);
             FileUtils.copyFile(file, new File(String.valueOf(newFile)));
             logger.error("Screenshot location: " + newFile.getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Reporter.log(newFile.getAbsolutePath());
     }
 }
 
