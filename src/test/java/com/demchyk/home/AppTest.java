@@ -20,10 +20,11 @@ public class AppTest {
 
     @Test
     public void method1Test(){
-        demoQAMainBO = new DemoQAMainBO();
+        /*demoQAMainBO = new DemoQAMainBO();
         demoQAMainBO.open();
         Assert.assertTrue("Home".contentEquals(demoQAMainBO.getHeaderText()));
-        System.out.println("Method 1");
+        System.out.println("Method 1");*/
+        Assert.assertTrue(false);
     }
 
     @Test void method2Test(){

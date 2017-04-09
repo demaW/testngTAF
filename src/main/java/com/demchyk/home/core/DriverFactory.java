@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-class DriverFactory {
+public class DriverFactory {
     private Logger logger = Logger.getLogger(DriverFactory.class);
 
     WebDriver getDriverVersion() {
