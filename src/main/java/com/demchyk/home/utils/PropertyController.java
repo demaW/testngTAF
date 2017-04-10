@@ -15,6 +15,8 @@ public class PropertyController {
 
     public static final String WEBRDIVER = "webdriver.driver.version";
     public static final String CHROMEPATH = "webdriver.chrome.driver";
+    public static final String DRIVER_PAGE_LOAD_WAIT = "webdriver.timeout.pageload";
+    public static final String DRIVER_WAIT_IMPLICITLY = "webdriver.wait.implicitly";
 
     private static final String PROPS_PATH = "src/main/resources/conf.properties";
 
@@ -31,10 +33,13 @@ public class PropertyController {
         return instance;
     }
 
-    public static String readProperty(String propertyName) throws NoSuchPropertyException {
+    public static String readProperty(String propertyName){
         String prop = getProp().getProperty(propertyName);
-        if (prop == null){
-            throw new NoSuchPropertyException("Property is null");
+        if (prop == null) try {
+            throw new NoSuchPropertyException("Property "+ propertyName +" is null");
+        } catch (NoSuchPropertyException e) {
+            logger.error(e.getMessage());
+            e.printStackTrace();
         }
         return prop;
     }
