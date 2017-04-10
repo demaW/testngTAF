@@ -69,7 +69,8 @@ public class ScreenshotReporter implements ITestListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Reporter.log(newFile.getAbsolutePath());
+        String url = newFile.getAbsolutePath().replace(System.getProperty("user.dir"),"");
+        Reporter.log("<td><a href='../../"+ url + "'>" + newFile.getAbsolutePath()+ "</td>");
     }
 }
 
