@@ -7,9 +7,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-/**
- * Unit test for simple App.
- */
 public class AppTest extends BaseClass {
     private DemoQAMainBO demoQAMainBO;
 
