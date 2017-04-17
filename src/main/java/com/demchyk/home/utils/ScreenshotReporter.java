@@ -69,7 +69,7 @@ public class ScreenshotReporter implements ITestListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String url = newFile.getAbsolutePath().replace(System.getProperty("user.dir").toString() + "target\\surefire-reports","");
+        String url = newFile.getAbsolutePath().replace(System.getProperty("user.dir") + "\\target\\surefire-reports","");
         Reporter.log("<td><a href=" + url + "'>" + newFile.getAbsolutePath()+ "</td>");
     }
 }
