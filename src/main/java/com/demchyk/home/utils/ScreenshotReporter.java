@@ -17,7 +17,7 @@ import java.time.Instant;
 
 public class ScreenshotReporter implements ITestListener {
     private Logger logger = Logger.getLogger(ScreenshotReporter.class);
-    private static final String SCREEN_PATH = "resources/screens/";
+    private static final String SCREEN_PATH = "target/surefire-reports/screens/";
 
     private WebDriver driver;
 
@@ -58,10 +58,10 @@ public class ScreenshotReporter implements ITestListener {
 
     }
 
-    private void takeScreenshot(String mehodName) {
+    private void takeScreenshot(String methodName) {
         driver = DriverProvider.getDriver();
         File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        String fileLocation = SCREEN_PATH + mehodName + Instant.now().toEpochMilli() + ".PNG";
+        String fileLocation = SCREEN_PATH + methodName + Instant.now().toEpochMilli() + ".PNG";
         File newFile = new File(fileLocation);
         try {
             FileUtils.copyFile(file, new File(String.valueOf(newFile)));

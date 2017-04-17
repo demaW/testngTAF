@@ -19,7 +19,7 @@ public class BaseClass {
 
     @BeforeSuite
     public void cleanUp() {
-        handleResourcesDir();
+        //handleResourcesDir();
         DriverProvider.getDriver().manage().timeouts().pageLoadTimeout(Long.parseLong(PropertyController.readProperty(
                 PropertyController.DRIVER_PAGE_LOAD_WAIT)), TimeUnit.SECONDS);
         DriverProvider.getDriver().manage().timeouts().implicitlyWait(Long.parseLong(PropertyController.readProperty(

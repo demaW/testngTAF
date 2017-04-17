@@ -16,7 +16,7 @@ public class DriverFactory {
         switch (driverVersion) {
             case "chrome":
                 logger.info("Chrome sys var is: " + System.getProperty(PropertyController.CHROMEPATH));
-                /*if (System.getProperty(PropertyController.CHROMEPATH) == null ||
+/*                if (System.getProperty(PropertyController.CHROMEPATH) == null ||
                         System.getProperty(PropertyController.CHROMEPATH).isEmpty()) {
                     System.setProperty(PropertyController.CHROMEPATH, PropertyController.readProperty(PropertyController.CHROMEPATH));
                 }*/
