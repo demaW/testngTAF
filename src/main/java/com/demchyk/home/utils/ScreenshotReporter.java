@@ -17,7 +17,7 @@ import java.time.Instant;
 
 public class ScreenshotReporter implements ITestListener {
     private Logger logger = Logger.getLogger(ScreenshotReporter.class);
-    private static final String SCREEN_PATH = "target/surefire-reports";
+    private static final String SCREEN_PATH = "target/surefire-reports/";
 
     private WebDriver driver;
 
