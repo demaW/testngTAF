@@ -15,7 +15,10 @@ public class DriverFactory {
         String driverVersion = readDriverVersion();
         switch (driverVersion) {
             case "chrome":
-                System.setProperty(PropertyController.CHROMEPATH, PropertyController.readProperty(PropertyController.CHROMEPATH));
+                if (System.getProperty(PropertyController.CHROMEPATH) == null ||
+                        System.getProperty(PropertyController.CHROMEPATH).isEmpty()) {
+                    System.setProperty(PropertyController.CHROMEPATH, PropertyController.readProperty(PropertyController.CHROMEPATH));
+                }
                 driver = new ChromeDriver();
                 break;
             case "firefox":
