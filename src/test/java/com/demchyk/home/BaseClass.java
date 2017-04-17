@@ -19,6 +19,14 @@ public class BaseClass {
 
     @BeforeSuite
     public void cleanUp() {
+        handleResourcesDir();
+        DriverProvider.getDriver().manage().timeouts().pageLoadTimeout(Long.parseLong(PropertyController.readProperty(
+                PropertyController.DRIVER_PAGE_LOAD_WAIT)), TimeUnit.SECONDS);
+        DriverProvider.getDriver().manage().timeouts().implicitlyWait(Long.parseLong(PropertyController.readProperty(
+                PropertyController.DRIVER_WAIT_IMPLICITLY)), TimeUnit.SECONDS);
+    }
+
+    private void handleResourcesDir() {
         logger.info("resource dir about to be cleared");
         File directory = new File(RESOURCES_PATH);
         if (!directory.exists()){
@@ -30,9 +38,5 @@ public class BaseClass {
             e.printStackTrace();
         }
         logger.info("resource dir cleared");
-        DriverProvider.getDriver().manage().timeouts().pageLoadTimeout(Long.parseLong(PropertyController.readProperty(
-                PropertyController.DRIVER_PAGE_LOAD_WAIT)), TimeUnit.SECONDS);
-        DriverProvider.getDriver().manage().timeouts().implicitlyWait(Long.parseLong(PropertyController.readProperty(
-                PropertyController.DRIVER_WAIT_IMPLICITLY)), TimeUnit.SECONDS);
     }
 }
