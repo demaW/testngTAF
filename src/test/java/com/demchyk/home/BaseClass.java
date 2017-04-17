@@ -14,14 +14,18 @@ import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
 public class BaseClass {
+    private static final String RESOURCES_PATH = "resources";
     Logger logger = Logger.getLogger(BaseClass.class);
 
     @BeforeSuite
     public void cleanUp() {
         logger.info("resource dir about to be cleared");
-        Path root = Paths.get("resources/");
+        File directory = new File(RESOURCES_PATH);
+        if (!directory.exists()){
+            directory.mkdir();
+        }
         try {
-            FileUtils.cleanDirectory(new File(String.valueOf(root)));
+            FileUtils.cleanDirectory(new File(RESOURCES_PATH));
         } catch (IOException e) {
             e.printStackTrace();
         }
