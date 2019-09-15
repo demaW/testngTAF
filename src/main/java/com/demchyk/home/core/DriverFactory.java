@@ -1,7 +1,7 @@
 package com.demchyk.home.core;
 
 import com.demchyk.home.utils.PropertyController;
-import com.demchyk.home.utils.exceptions.NoSuchPropertyException;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,20 +14,13 @@ public class DriverFactory {
         WebDriver driver;
         String driverVersion = readDriverVersion();
         switch (driverVersion) {
-            case "chrome":
-                logger.info("Chrome sys var is: " + System.getProperty(PropertyController.CHROMEPATH));
-/*                if (System.getProperty(PropertyController.CHROMEPATH) == null ||
-                        System.getProperty(PropertyController.CHROMEPATH).isEmpty()) {
-                    System.setProperty(PropertyController.CHROMEPATH, PropertyController.readProperty(PropertyController.CHROMEPATH));
-                }*/
-                driver = new ChromeDriver();
-                break;
             case "firefox":
+                WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
                 break;
             default:
-                System.setProperty(PropertyController.CHROMEPATH, PropertyController.readProperty(PropertyController.CHROMEPATH));
-                driver = new ChromeDriver();
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver() ;
         }
         return driver;
     }

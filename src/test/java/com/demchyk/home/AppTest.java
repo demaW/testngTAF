@@ -2,6 +2,7 @@ package com.demchyk.home;
 
 import com.demchyk.home.buisnessobject.DemoQAMainBO;
 import com.demchyk.home.core.DriverProvider;
+import com.demchyk.home.pageobject.DemoQaButtonPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -12,7 +13,6 @@ public class AppTest extends BaseClass {
 
     @BeforeClass
     public void setUp(){
-        System.out.println("In regression");
     }
 
     @Test
@@ -25,6 +25,15 @@ public class AppTest extends BaseClass {
 
     @Test void method2Test(){
         System.out.println("Method 2");
+    }
+
+    @Test
+    public void buttonTest(){
+        DemoQaButtonPage demoQaButtonPage = new DemoQaButtonPage();
+        demoQaButtonPage.openPage();
+        demoQaButtonPage.buttonElement.pressButton();
+        demoQaButtonPage.cssbuttonElement.click();
+        System.out.println();
     }
 
     @AfterMethod

@@ -14,7 +14,6 @@ public class PropertyController {
     private static final Logger logger = Logger.getLogger(PropertyController.class);
 
     public static final String WEBRDIVER = "webdriver.driver.version";
-    public static final String CHROMEPATH = "webdriver.chrome.driver";
     public static final String DRIVER_PAGE_LOAD_WAIT = "webdriver.timeout.pageload";
     public static final String DRIVER_WAIT_IMPLICITLY = "webdriver.wait.implicitly";
 
