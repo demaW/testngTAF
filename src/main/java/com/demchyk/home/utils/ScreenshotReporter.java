@@ -19,8 +19,6 @@ public class ScreenshotReporter implements ITestListener {
     private Logger logger = Logger.getLogger(ScreenshotReporter.class);
     private static final String SCREEN_PATH = "target/surefire-reports/";
 
-    private WebDriver driver;
-
     @Override
     public void onTestStart(ITestResult iTestResult) {
 
@@ -59,7 +57,7 @@ public class ScreenshotReporter implements ITestListener {
     }
 
     private void takeScreenshot(String methodName) {
-        driver = DriverProvider.getDriver();
+        WebDriver driver = DriverProvider.getDriver();
         File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         String fileLocation = SCREEN_PATH + methodName + Instant.now().toEpochMilli() + ".PNG";
         File newFile = new File(fileLocation);

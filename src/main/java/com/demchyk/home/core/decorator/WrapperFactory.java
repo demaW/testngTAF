@@ -5,9 +5,12 @@ import org.openqa.selenium.WebElement;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class WrapperFactory {
+class WrapperFactory {
 
-    public static ExtendableElement createInstance(Class<ExtendableElement> clazz, WebElement element) {
+    private WrapperFactory() {
+    }
+
+    static ExtendableElement createInstance(Class<ExtendableElement> clazz, WebElement element) {
         try {
             return clazz.getConstructor(WebElement.class).newInstance(element);
         } catch (InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {

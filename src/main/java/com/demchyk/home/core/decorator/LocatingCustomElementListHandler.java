@@ -24,7 +24,7 @@ class LocatingCustomElementListHandler implements InvocationHandler {
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         List<WebElement> elements = locator.findElements();
         List<ExtendableElement> extendableElementList = new ArrayList<>();
-        elements.forEach((elem) -> extendableElementList.add(WrapperFactory.createInstance(clazz, elem)));
+        elements.forEach(elem -> extendableElementList.add(WrapperFactory.createInstance(clazz, elem)));
         try {
             return method.invoke(extendableElementList, args);
         } catch (InvocationTargetException e) {

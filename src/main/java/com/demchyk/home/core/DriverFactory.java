@@ -13,14 +13,12 @@ public class DriverFactory {
     WebDriver getDriverVersion() {
         WebDriver driver;
         String driverVersion = readDriverVersion();
-        switch (driverVersion) {
-            case "firefox":
-                WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
-                break;
-            default:
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver() ;
+        if ("firefox".equals(driverVersion)) {
+            WebDriverManager.firefoxdriver().setup();
+            driver = new FirefoxDriver();
+        } else {
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
         }
         return driver;
     }
@@ -28,6 +26,7 @@ public class DriverFactory {
     private String readDriverVersion() {
         String version;
         version = PropertyController.readProperty(PropertyController.WEBRDIVER);
+        logger.info("Driver version to be used: " + version);
         return version;
     }
 
